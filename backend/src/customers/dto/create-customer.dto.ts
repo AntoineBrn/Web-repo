@@ -1,6 +1,6 @@
 import { Transform } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { IsBirthDate } from "./is-birth-date.validator.js";
+import { IsBirthDate } from "./is-birth-date.validator";
 
 export class CreateCustomerDto {
   @Transform(({ value }: { value: unknown }) =>

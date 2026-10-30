@@ -1,25 +1,25 @@
 import { Injectable } from "@nestjs/common";
 import { InjectDataSource } from "@nestjs/typeorm";
 import { DataSource, QueryFailedError } from "typeorm";
-import { CustomerEntity } from "./entities/customer.entity.js";
-import { BikeSellEntity } from "./entities/bike-sell.entity.js";
-import { BikeEntity } from "../bikes/entities/bike.entity.js";
-import type {
-  CreateCustomerModel,
-  CustomerModel,
-  UpdateCustomerModel,
-} from "./models/customer.model.js";
+import { BikeEntity } from "../bikes/entities/bike.entity";
+import { BikeSellEntity } from "./entities/bike-sell.entity";
+import { CustomerEntity } from "./entities/customer.entity";
 import type {
   BikeSellModel,
   CreateBikeSellModel,
   PurchasedBikeSellModel,
-} from "./models/bike-sell.model.js";
-import type { PurchasedBikeModel } from "./models/purchased-bike.model.js";
+} from "./models/bike-sell.model";
+import type {
+  CreateCustomerModel,
+  CustomerModel,
+  UpdateCustomerModel,
+} from "./models/customer.model";
 import {
   BikeNotFoundError,
   CustomerNotFoundError,
   DuplicateEmailError,
-} from "./models/persistence-error.model.js";
+} from "./models/persistence-error.model";
+import type { PurchasedBikeModel } from "./models/purchased-bike.model";
 
 @Injectable()
 export class CustomersRepository {

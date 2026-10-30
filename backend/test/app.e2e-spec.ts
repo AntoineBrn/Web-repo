@@ -1,16 +1,16 @@
-import { Test } from "@nestjs/testing";
 import type { INestApplication } from "@nestjs/common";
-import { databaseOptions } from "../src/database/database-options.js";
-import { CustomerEntity } from "../src/customers/entities/customer.entity.js";
+import { Test } from "@nestjs/testing";
 import request from "supertest";
 import { DataSource } from "typeorm";
-import { AppModule } from "../src/app.module.js";
-import { configureApp } from "../src/configure-app.js";
-import { populateShopFixture, fixtureIds } from "./fixtures/shop-fixture.js";
-import { BikeEntity } from "../src/bikes/entities/bike.entity.js";
-import { BikeSellEntity } from "../src/customers/entities/bike-sell.entity.js";
-import type { CustomerResponseDto } from "../src/customers/dto/customer-response.dto.js";
-import type { PurchasedBikeSellResponseDto } from "../src/customers/dto/bike-sell-response.dto.js";
+import { AppModule } from "../src/app.module";
+import { BikeEntity } from "../src/bikes/entities/bike.entity";
+import { configureApp } from "../src/configure-app";
+import type { PurchasedBikeSellResponseDto } from "../src/customers/dto/bike-sell-response.dto";
+import type { CustomerResponseDto } from "../src/customers/dto/customer-response.dto";
+import { BikeSellEntity } from "../src/customers/entities/bike-sell.entity";
+import { CustomerEntity } from "../src/customers/entities/customer.entity";
+import { databaseOptions } from "../src/database/database-options";
+import { fixtureIds, populateShopFixture } from "./fixtures/shop-fixture";
 
 const missingId = "90000000-0000-4000-8000-000000000009";
 const customerId = fixtureIds.customers[0];

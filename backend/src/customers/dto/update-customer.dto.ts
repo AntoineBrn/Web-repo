@@ -6,7 +6,7 @@ import {
   IsString,
   ValidateIf,
 } from "class-validator";
-import { IsBirthDate } from "./is-birth-date.validator.js";
+import { IsBirthDate } from "./is-birth-date.validator";
 
 export class UpdateCustomerDto {
   @ValidateIf((_object: unknown, value: unknown) => value !== undefined)

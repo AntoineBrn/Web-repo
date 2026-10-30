@@ -71,7 +71,7 @@ TypeORM utilise `better-sqlite3` et `synchronize: true` pour créer et synchroni
 le schéma au démarrage de cette application pédagogique, sans migrations.
 
 `DatabaseModule` configure TypeORM avec `forRoot()`. Les entités sont découvertes
-via `import.meta.dirname + "/../**/*.entity{.ts,.js}"`, adapté aux modules ES et
+via `__dirname + "/../**/*.entity{.ts,.js}"`, adapté aux modules ES et
 au code compilé. Le seed partage les mêmes options.
 
 La base locale est `db.sqlite`, ignorée par Git. Le chemin est relatif au dossier

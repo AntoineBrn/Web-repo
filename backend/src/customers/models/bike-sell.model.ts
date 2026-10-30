@@ -1,4 +1,4 @@
-import type { PurchasedBikeModel } from "./purchased-bike.model.js";
+import type { PurchasedBikeModel } from "./purchased-bike.model";
 
 export interface CreateBikeSellModel {
   bikeId: string;

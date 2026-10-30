@@ -1,9 +1,9 @@
-import { randomUUID } from "node:crypto";
 import { fakerFR as faker } from "@faker-js/faker";
+import { randomUUID } from "node:crypto";
 import type { DataSource } from "typeorm";
-import { CustomerEntity } from "../customers/entities/customer.entity.js";
-import { BikeEntity } from "../bikes/entities/bike.entity.js";
-import { BikeSellEntity } from "../customers/entities/bike-sell.entity.js";
+import { BikeEntity } from "../bikes/entities/bike.entity";
+import { BikeSellEntity } from "../customers/entities/bike-sell.entity";
+import { CustomerEntity } from "../customers/entities/customer.entity";
 
 const locations = [
   { city: "Paris", postalCode: "75011" },

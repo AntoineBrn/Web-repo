@@ -10,19 +10,19 @@ import {
   Patch,
   Post,
 } from "@nestjs/common";
-import { CustomersService } from "./customers.service.js";
-import { CreateCustomerDto } from "./dto/create-customer.dto.js";
-import { UpdateCustomerDto } from "./dto/update-customer.dto.js";
-import { CreateBikeSellDto } from "./dto/create-bike-sell.dto.js";
-import { CustomerResponseDto } from "./dto/customer-response.dto.js";
+import { CustomersService } from "./customers.service";
 import {
   BikeSellResponseDto,
   PurchasedBikeSellResponseDto,
-} from "./dto/bike-sell-response.dto.js";
+} from "./dto/bike-sell-response.dto";
+import { CreateBikeSellDto } from "./dto/create-bike-sell.dto";
+import { CreateCustomerDto } from "./dto/create-customer.dto";
+import { CustomerResponseDto } from "./dto/customer-response.dto";
+import { UpdateCustomerDto } from "./dto/update-customer.dto";
 import type {
   CreateCustomerModel,
   UpdateCustomerModel,
-} from "./models/customer.model.js";
+} from "./models/customer.model";
 
 @Controller("customers")
 export class CustomersController {

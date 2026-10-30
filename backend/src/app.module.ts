@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { CustomersModule } from "./customers/customers.module.js";
-import { BikesModule } from "./bikes/bikes.module.js";
-import { DatabaseModule } from "./database/database.module.js";
+import { BikesModule } from "./bikes/bikes.module";
+import { CustomersModule } from "./customers/customers.module";
+import { DatabaseModule } from "./database/database.module";
 
 @Module({
   imports: [DatabaseModule, CustomersModule, BikesModule],

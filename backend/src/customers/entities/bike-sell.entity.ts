@@ -1,3 +1,4 @@
+import type { Relation } from "typeorm";
 import {
   Check,
   Column,
@@ -6,9 +7,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import type { Relation } from "typeorm";
-import { CustomerEntity } from "./customer.entity.js";
-import { BikeEntity } from "../../bikes/entities/bike.entity.js";
+import { BikeEntity } from "../../bikes/entities/bike.entity";
+import { CustomerEntity } from "./customer.entity";
 
 @Entity({ name: "bike_sells" })
 @Check("bike_sells_valid_numbers", "quantity > 0 AND unit_price_cents >= 0")

@@ -1,8 +1,8 @@
 import type {
   BikeSellModel,
   PurchasedBikeSellModel,
-} from "../models/bike-sell.model.js";
-import type { PurchasedBikeModel } from "../models/purchased-bike.model.js";
+} from "../models/bike-sell.model";
+import type { PurchasedBikeModel } from "../models/purchased-bike.model";
 
 export class BikeSellResponseDto {
   id: string;

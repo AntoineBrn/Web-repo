@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
-import { databaseOptions } from "./database-options.js";
-import { seedDatabase } from "./seed-data.js";
-import { CustomerEntity } from "../customers/entities/customer.entity.js";
-import { BikeEntity } from "../bikes/entities/bike.entity.js";
-import { BikeSellEntity } from "../customers/entities/bike-sell.entity.js";
+import { BikeEntity } from "../bikes/entities/bike.entity";
+import { BikeSellEntity } from "../customers/entities/bike-sell.entity";
+import { CustomerEntity } from "../customers/entities/customer.entity";
+import { databaseOptions } from "./database-options";
+import { seedDatabase } from "./seed-data";
 
 describe("SQLite schema and seed", () => {
   let database: DataSource;

@@ -5,22 +5,22 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
-import { CustomersRepository } from "./customers.repository.js";
-import type {
-  CreateCustomerModel,
-  CustomerModel,
-  UpdateCustomerModel,
-} from "./models/customer.model.js";
+import { CustomersRepository } from "./customers.repository";
 import type {
   BikeSellModel,
   CreateBikeSellModel,
   PurchasedBikeSellModel,
-} from "./models/bike-sell.model.js";
+} from "./models/bike-sell.model";
+import type {
+  CreateCustomerModel,
+  CustomerModel,
+  UpdateCustomerModel,
+} from "./models/customer.model";
 import {
   BikeNotFoundError,
   CustomerNotFoundError,
   DuplicateEmailError,
-} from "./models/persistence-error.model.js";
+} from "./models/persistence-error.model";
 
 @Injectable()
 export class CustomersService {

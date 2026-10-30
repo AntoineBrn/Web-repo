@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
 import type { DataSource } from "typeorm";
-import { CustomerEntity } from "../../src/customers/entities/customer.entity.js";
-import { BikeEntity } from "../../src/bikes/entities/bike.entity.js";
-import { BikeSellEntity } from "../../src/customers/entities/bike-sell.entity.js";
+import { BikeEntity } from "../../src/bikes/entities/bike.entity";
+import { BikeSellEntity } from "../../src/customers/entities/bike-sell.entity";
+import { CustomerEntity } from "../../src/customers/entities/customer.entity";
 
 export const fixtureIds = {
   customers: Array.from({ length: 3 }, () => randomUUID()),

@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { BikeEntity } from "./entities/bike.entity.js";
-import { BikesController } from "./bikes.controller.js";
-import { BikesService } from "./bikes.service.js";
-import { BikesRepository } from "./bikes.repository.js";
+import { BikesController } from "./bikes.controller";
+import { BikesRepository } from "./bikes.repository";
+import { BikesService } from "./bikes.service";
+import { BikeEntity } from "./entities/bike.entity";
 
 @Module({
   imports: [TypeOrmModule.forFeature([BikeEntity])],

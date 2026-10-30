@@ -1,4 +1,4 @@
-import type { CustomerModel } from "../models/customer.model.js";
+import type { CustomerModel } from "../models/customer.model";
 
 export class CustomerResponseDto {
   id: string;

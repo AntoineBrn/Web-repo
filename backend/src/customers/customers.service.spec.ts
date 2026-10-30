@@ -3,14 +3,14 @@ import {
   ConflictException,
   NotFoundException,
 } from "@nestjs/common";
-import { CustomersService } from "./customers.service.js";
-import { CustomersRepository } from "./customers.repository.js";
-import type { CustomerModel } from "./models/customer.model.js";
+import { CustomersRepository } from "./customers.repository";
+import { CustomersService } from "./customers.service";
+import type { CustomerModel } from "./models/customer.model";
 import {
   BikeNotFoundError,
   CustomerNotFoundError,
   DuplicateEmailError,
-} from "./models/persistence-error.model.js";
+} from "./models/persistence-error.model";
 
 const customer: CustomerModel = {
   id: "customer-id",

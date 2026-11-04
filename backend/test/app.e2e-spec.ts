@@ -78,7 +78,9 @@ describe("Bike shop API", () => {
       .get("/customers")
       .expect(200);
     expect(
-      (all.body.customers as CustomerResponseDto[]).map((item) => item.lastName),
+      (all.body.customers as CustomerResponseDto[]).map(
+        (item) => item.lastName,
+      ),
     ).toEqual(["Bernard", "Durand", "Martin", "Moreau"]);
     await request(app.getHttpServer())
       .patch(`/customers/${customer.id}`)
@@ -286,9 +288,58 @@ describe("Bike shop API", () => {
     expect(await database.getRepository(BikeEntity).count()).toBe(4);
   });
 
-  it("exposes no bike catalogue routes or Hello World route", async () => {
-    await request(app.getHttpServer()).get("/bikes").expect(404);
-    await request(app.getHttpServer()).post("/bikes").send({}).expect(404);
+  it("paginates and retrieves the bike catalogue", async () => {
+    const response = await request(app.getHttpServer())
+      .get("/bikes?page=1&limit=2")
+      .expect(200);
+
+    const page = response.body as { data: any[]; totalCount: number };
+    expect(page.data.length).toBeLessThanOrEqual(2);
+    expect(typeof page.totalCount).toBe("number");
+  });
+
+  it("validates bike inputs on creation and update", async () => {
+    // 400 Bad Request : Données de vélo invalides (ex: prix négatif, modèle vide)
+    await request(app.getHttpServer())
+      .post("/bikes")
+      .send({
+        brand: "",
+        model: "Test",
+        description: "Desc",
+        category: "City",
+        frameMaterial: "Aluminum",
+        frameSizeCm: 54,
+        wheelSizeInches: 28,
+        gearCount: 7,
+        weightKg: 12.5,
+        electric: false,
+        priceCents: -100, // Invalide (@Min(0))
+      })
+      .expect(400);
+
+    // 400 Bad Request : Patch vide (le service lève un BadRequest si aucun champ n'est fourni)
+    await request(app.getHttpServer())
+      .patch(`/bikes/${bikeId}`)
+      .send({})
+      .expect(400);
+  });
+
+  it("reports missing bikes with 404 on get, patch and delete", async () => {
+    await request(app.getHttpServer())
+      .get(`/bikes/${missingId}`)
+      .expect(404);
+
+    await request(app.getHttpServer())
+      .patch(`/bikes/${missingId}`)
+      .send({ brand: "New Brand" })
+      .expect(404);
+
+    await request(app.getHttpServer())
+      .delete(`/bikes/${missingId}`)
+      .expect(404);
+  });
+
+  it("exposes no Hello World route", async () => {
     await request(app.getHttpServer()).get("/").expect(404);
   });
 });

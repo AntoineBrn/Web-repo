@@ -19,7 +19,10 @@ import {
 } from "./dto/bike-sell-response.dto";
 import { CreateBikeSellDto } from "./dto/create-bike-sell.dto";
 import { CreateCustomerDto } from "./dto/create-customer.dto";
-import { CustomerResponseDto, CustomersPageResponseDto } from "./dto/customer-response.dto";
+import {
+  CustomerResponseDto,
+  CustomersPageResponseDto,
+} from "./dto/customer-response.dto";
 import { UpdateCustomerDto } from "./dto/update-customer.dto";
 import type {
   CreateCustomerModel,

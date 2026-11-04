@@ -27,19 +27,22 @@ import type { PurchasedBikeModel } from "./models/purchased-bike.model";
 export class CustomersRepository {
   constructor(@InjectDataSource() private readonly dataSource: DataSource) {}
 
-  async findAll({ page, limit }: FilterCustomersModel): Promise<CustomersPageModel> {
-  const [entities, totalCount] = await this.dataSource
-    .getRepository(CustomerEntity)
-    .findAndCount({
-      order: { lastName: "ASC", firstName: "ASC", id: "ASC" },
-      skip: (page - 1) * limit,
-      take: limit,
-    });
-  return {
-    totalCount,
-    customers: entities.map((entity) => this.toCustomerModel(entity)),
-  };
-}
+  async findAll({
+    page,
+    limit,
+  }: FilterCustomersModel): Promise<CustomersPageModel> {
+    const [entities, totalCount] = await this.dataSource
+      .getRepository(CustomerEntity)
+      .findAndCount({
+        order: { lastName: "ASC", firstName: "ASC", id: "ASC" },
+        skip: (page - 1) * limit,
+        take: limit,
+      });
+    return {
+      totalCount,
+      customers: entities.map((entity) => this.toCustomerModel(entity)),
+    };
+  }
 
   async findById(id: string): Promise<CustomerModel | null> {
     const entity = await this.dataSource

@@ -78,7 +78,7 @@ describe("Bike shop API", () => {
       .get("/customers")
       .expect(200);
     expect(
-      (all.body as CustomerResponseDto[]).map((item) => item.lastName),
+      (all.body.customers as CustomerResponseDto[]).map((item) => item.lastName),
     ).toEqual(["Bernard", "Durand", "Martin", "Moreau"]);
     await request(app.getHttpServer())
       .patch(`/customers/${customer.id}`)

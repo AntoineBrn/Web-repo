@@ -3,17 +3,26 @@ import { useState } from "react";
 import type {
   CreateCustomerModel,
   CustomerModel,
+  GetCustomersResponse,
 } from "../models/CustomerModel";
 
 export const useCustomersProvider = () => {
   const [customers, setCustomers] = useState<CustomerModel[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
+  const [totalCount, setTotalCount] = useState<number>(0);
 
   const load = () => {
     setIsLoading(true);
-    axios
-      .get("http://localhost:3000/customers")
-      .then((result) => setCustomers(result.data))
+    return axios
+      .get<GetCustomersResponse>("http://localhost:3000/customers", {
+        params: { page, limit },
+      })
+      .then(({ data }) => {
+        setCustomers(data.customers);
+        setTotalCount(data.totalCount);
+      })
       .finally(() => {
         setIsLoading(false);
       });
@@ -21,7 +30,11 @@ export const useCustomersProvider = () => {
 
   const deleteCustomer = (id: string) => {
     axios.delete(`http://localhost:3000/customers/${id}`).then(() => {
-      setCustomers((prev) => prev.filter((customer) => customer.id !== id));
+      if (customers.length === 1 && page > 1) {
+        setPage(page - 1);
+      } else {
+        void load();
+      }
     });
   };
 
@@ -29,16 +42,18 @@ export const useCustomersProvider = () => {
   const createCustomer = (input: CreateCustomerModel) =>
     axios
       .post<CustomerModel>("http://localhost:3000/customers", input)
-      .then((result) => {
-        // Keep the same order as the backend: last name, then first name
-        setCustomers((prev) =>
-          [...prev, result.data].sort(
-            (a, b) =>
-              a.lastName.localeCompare(b.lastName) ||
-              a.firstName.localeCompare(b.firstName),
-          ),
-        );
-      });
+      .then(() => load());
 
-  return { customers, load, isLoading, deleteCustomer, createCustomer };
+  return {
+    customers,
+    load,
+    isLoading,
+    deleteCustomer,
+    createCustomer,
+    page,
+    setPage,
+    limit,
+    setLimit,
+    totalCount,
+  };
 };

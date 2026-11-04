@@ -25,3 +25,8 @@ export type CreateCustomerModel = {
   city?: string;
   country?: string;
 };
+
+export type GetCustomersResponse = {
+  totalCount: number;
+  customers: CustomerModel[];
+};

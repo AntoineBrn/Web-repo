@@ -1,4 +1,7 @@
-import type { CustomerModel, CustomersPageModel } from "../models/customer.model";
+import type {
+  CustomerModel,
+  CustomersPageModel,
+} from "../models/customer.model";
 
 export class CustomerResponseDto {
   id: string;

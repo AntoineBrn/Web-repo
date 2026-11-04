@@ -16,7 +16,10 @@ import type {
 export class BikesRepository {
   constructor(@InjectDataSource() private readonly dataSource: DataSource) {}
 
-  async findAll({ page, limit }: FilterCustomersModel): Promise<BikesPageModel> {
+  async findAll({
+    page,
+    limit,
+  }: FilterCustomersModel): Promise<BikesPageModel> {
     const [entities, totalCount] = await this.dataSource
       .getRepository(BikeEntity)
       .findAndCount({
@@ -51,7 +54,11 @@ export class BikesRepository {
   }
 
   async delete(id: string): Promise<boolean> {
-    if (await this.dataSource.getRepository(BikeSellEntity).existsBy({ bikeId: id }))
+    if (
+      await this.dataSource
+        .getRepository(BikeSellEntity)
+        .existsBy({ bikeId: id })
+    )
       throw new BikeInUseError();
     const result = await this.dataSource.getRepository(BikeEntity).delete(id);
     return (result.affected ?? 0) > 0;

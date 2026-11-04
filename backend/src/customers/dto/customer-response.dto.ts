@@ -1,4 +1,4 @@
-import type { CustomerModel } from "../models/customer.model";
+import type { CustomerModel, CustomersPageModel } from "../models/customer.model";
 
 export class CustomerResponseDto {
   id: string;
@@ -14,5 +14,17 @@ export class CustomerResponseDto {
 
   static fromModel(model: CustomerModel): CustomerResponseDto {
     return Object.assign(new CustomerResponseDto(), model);
+  }
+}
+
+export class CustomersPageResponseDto {
+  totalCount: number;
+  customers: CustomerResponseDto[];
+
+  static fromModel(model: CustomersPageModel): CustomersPageResponseDto {
+    return Object.assign(new CustomersPageResponseDto(), {
+      totalCount: model.totalCount,
+      customers: model.customers.map((c) => CustomerResponseDto.fromModel(c)),
+    });
   }
 }
